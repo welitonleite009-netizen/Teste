@@ -1,0 +1,94 @@
+--==============================
+-- RAYFIELD LOADER
+--==============================
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+--==============================
+-- JANELA PRINCIPAL
+--==============================
+local Window = Rayfield:CreateWindow({
+   Name = "Meu Rayfield Script",
+   LoadingTitle = "Carregando Script",
+   LoadingSubtitle = "by Rony",
+   ConfigurationSaving = {
+      Enabled = false
+   }
+})
+
+--==============================
+-- ABA PRINCIPAL
+--==============================
+local MainTab = Window:CreateTab("Principal", 4483362458)
+
+--==============================
+-- TEXTO
+--==============================
+MainTab:CreateParagraph({
+   Title = "Bem-vindo",
+   Content = "Esse é seu script Rayfield base.\nEdite como quiser!"
+})
+
+--==============================
+-- BOTÃO SIMPLES
+--==============================
+MainTab:CreateButton({
+   Name = "Botão de Teste",
+   Callback = function()
+      print("Botão clicado com sucesso!")
+   end
+})
+
+--==============================
+-- TOGGLE (ON / OFF)
+--==============================
+local ativo = false
+
+MainTab:CreateToggle({
+   Name = "Toggle Exemplo",
+   CurrentValue = false,
+   Callback = function(Value)
+      ativo = Value
+      if ativo then
+         print("Toggle ligado")
+      else
+         print("Toggle desligado")
+      end
+   end
+})
+
+--==============================
+-- SLIDER
+--==============================
+MainTab:CreateSlider({
+   Name = "Velocidade",
+   Range = {0, 100},
+   Increment = 1,
+   CurrentValue = 16,
+   Callback = function(Value)
+      print("Velocidade definida:", Value)
+   end
+})
+
+--==============================
+-- DROPDOWN
+--==============================
+MainTab:CreateDropdown({
+   Name = "Escolher Opção",
+   Options = {"Opção 1", "Opção 2", "Opção 3"},
+   CurrentOption = "Opção 1",
+   Callback = function(Option)
+      print("Opção escolhida:", Option)
+   end
+})
+
+--==============================
+-- SEGUNDA ABA
+--==============================
+local ExtraTab = Window:CreateTab("Extras", 4483362458)
+
+ExtraTab:CreateButton({
+   Name = "Fechar UI",
+   Callback = function()
+      Rayfield:Destroy()
+   end
+})
